@@ -2,11 +2,11 @@
 
 The notebook has been created with the following structure:
 
-## ✅ Completed Sections:
+## Completed Sections:
 1. **Setup & Imports** - All libraries and modules imported
 2. **Data Fetching** - SPY option chain retrieval and cleaning
 
-## 📝 Remaining Sections to Add:
+## Remaining Sections to Add:
 
 3. **Calculate Implied Volatility** 
    - Use vectorized IV solver
@@ -40,15 +40,15 @@ The notebook has been created with the following structure:
    
 10. **Summary & Conclusions**
 
-## 🚀 To Complete the Notebook:
+## To Complete the Notebook:
 
 Run the notebook cells sequentially. The framework is in place and all modules are functional.
 
 Key Features Implemented:
-- ✅ Modular, production-ready code
-- ✅ Comprehensive error handling
-- ✅ Caching for efficiency
-- ✅ Professional visualizations
-- ✅ Full backtesting engine
-- ✅ Advanced performance metrics
+- Modular, production-ready code
+- Comprehensive error handling
+- Caching for efficiency
+- Professional visualizations
+- Full backtesting engine
+- Advanced performance metrics
 
