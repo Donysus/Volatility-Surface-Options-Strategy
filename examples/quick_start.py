@@ -85,16 +85,19 @@ def main():
     # Step 7: Analyze specific expiry
     print("\n📊 Step 7: Analyzing nearest expiry...")
     nearest_expiry = spy_surface['expiry'].min()
-    near_exp_data = spy_greeks[spy_greeks['expiry'] == nearest_expiry]
+    near_exp_data = spy_greeks[spy_greeks['expiry'] == nearest_expiry].copy()
     
     print(f"   Expiry: {nearest_expiry.strftime('%Y-%m-%d')}")
     print(f"   Days to expiry: {(nearest_expiry - current_date).days}")
     print(f"   Contracts: {len(near_exp_data)}")
     
     # ATM analysis
-    atm_strike = near_exp_data.iloc[(near_exp_data['strike'] - spot).abs().argsort()[0]]
-    print(f"\n   ATM Strike: ${atm_strike['strike']:.2f}")
-    print(f"   ATM Call IV: {atm_strike['iv_final']:.2%}" if atm_strike['type'] == 'call' else "")
+    if len(near_exp_data) > 0:
+        atm_idx = (near_exp_data['strike'] - spot).abs().argsort().iloc[0]
+        atm_strike = near_exp_data.loc[near_exp_data.index[atm_idx]]
+        print(f"\n   ATM Strike: ${atm_strike['strike']:.2f}")
+        if 'type' in atm_strike and atm_strike['type'] == 'call':
+            print(f"   ATM Call IV: {atm_strike['iv_final']:.2%}")
     
     # Step 8: Visualization
     print("\n📈 Step 8: Creating visualizations...")

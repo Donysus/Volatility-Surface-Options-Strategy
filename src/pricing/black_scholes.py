@@ -427,9 +427,12 @@ def calculate_implied_volatility_vectorized(
     # Solve for each option type separately (for efficiency)
     iv_results = np.full(len(df), np.nan)
     
+    # Convert option types to lowercase strings
+    option_types_str = pd.Series(option_types).str.lower()
+    
     for opt_type in ['call', 'put']:
-        mask = (option_types.astype(str).str.lower() == opt_type) | \
-               (option_types.astype(str).str.lower() == opt_type[0])
+        mask = (option_types_str == opt_type) | (option_types_str == opt_type[0])
+        mask = mask.values  # Convert to numpy array
         
         if mask.sum() > 0:
             iv_results[mask] = solver.solve(
