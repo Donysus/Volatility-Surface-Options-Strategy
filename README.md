@@ -1,11 +1,11 @@
-# 🧠 Dynamic Volatility Surface & Options Strategy Simulator
+# Dynamic Volatility Surface & Options Strategy Simulator
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A comprehensive toolkit for **volatility modeling**, **options pricing**, and **strategy backtesting**. This project demonstrates advanced quantitative finance concepts including implied volatility surfaces, Greeks calculation, and delta-hedged volatility trading strategies.
 
-## 🎯 Project Overview
+## Project Overview
 
 This is a professional-grade resume project showcasing expertise in:
 - **Derivatives Pricing**: Black-Scholes model with vectorized IV solver
@@ -14,32 +14,32 @@ This is a professional-grade resume project showcasing expertise in:
 - **Risk Management**: Comprehensive Greeks calculation and delta hedging
 - **Performance Analytics**: Advanced metrics including Sharpe, Sortino, and P&L attribution
 
-## ✨ Key Features
+## Key Features
 
 ### 1. Data Acquisition
-- 📊 Real-time option chain data from **yfinance** (SPY, AAPL, etc.)
-- 🔄 Support for **Polygon.io** for historical data
-- 💾 Intelligent caching system for efficient backtesting
-- 📈 Historical and realized volatility calculations (Close-to-Close, Parkinson, Garman-Klass)
+- Real-time option chain data from **yfinance** (SPY, AAPL, etc.)
+- Support for **Polygon.io** for historical data
+- Intelligent caching system for efficient backtesting
+- Historical and realized volatility calculations (Close-to-Close, Parkinson, Garman-Klass)
 
 ### 2. Implied Volatility Engine
-- ⚡ **Vectorized Black-Scholes pricing** with numba acceleration
-- 🎯 **Root-finding IV solver** using scipy (Brent's method, Newton-Raphson)
-- ✅ Put-call parity validation
-- 🔧 Handles edge cases (ATM, ITM, OTM, near expiry)
+- **Vectorized Black-Scholes pricing** with numba acceleration
+- **Root-finding IV solver** using scipy (Brent's method, Newton-Raphson)
+- Put-call parity validation
+- Handles edge cases (ATM, ITM, OTM, near expiry)
 
 ### 3. Volatility Surface
-- 📐 **Multiple interpolation methods**: Cubic spline, RBF, SVI model
-- 🗺️ **Surface smoothing** to eliminate arbitrage violations
-- 📊 **2D Volatility Smiles** by expiry
-- 📈 **Term Structure** visualization (ATM vol across maturities)
-- 🌐 **3D Surface plots** (Strike × Maturity × IV)
+- **Multiple interpolation methods**: Cubic spline, RBF, SVI model
+- **Surface smoothing** to eliminate arbitrage violations
+- **2D Volatility Smiles** by expiry
+- **Term Structure** visualization (ATM vol across maturities)
+- **3D Surface plots** (Strike × Maturity × IV)
 
 ### 4. Greeks Calculator
-- 🔢 **Analytical Greeks**: Delta, Gamma, Vega, Theta, Rho
-- ⚖️ **Delta-neutral hedging** calculations
-- 📊 **P&L attribution** (Theta P&L, Gamma P&L, Vega P&L)
-- 🎯 Position-level and portfolio-level aggregation
+- **Analytical Greeks**: Delta, Gamma, Vega, Theta, Rho
+- **Delta-neutral hedging** calculations
+- **P&L attribution** (Theta P&L, Gamma P&L, Vega P&L)
+- Position-level and portfolio-level aggregation
 
 ### 5. Trading Strategies
 
@@ -56,10 +56,10 @@ This is a professional-grade resume project showcasing expertise in:
 - **Rebalancing**: Triggered by delta threshold
 
 ### 6. Backtesting Engine
-- 📊 Full **portfolio simulation** with position tracking
-- 💰 **Transaction costs** and **slippage** modeling
-- 📈 **Mark-to-market** P&L with Greeks evolution
-- 🎯 **Trade logging** and audit trail
+- Full **portfolio simulation** with position tracking
+- **Transaction costs** and **slippage** modeling
+- **Mark-to-market** P&L with Greeks evolution
+- **Trade logging** and audit trail
 
 ### 7. Performance Metrics
 - **Risk-Adjusted Returns**: Sharpe, Sortino, Calmar ratios
@@ -69,14 +69,14 @@ This is a professional-grade resume project showcasing expertise in:
 - **Volatility Analysis**: IV-RV correlation and forecast accuracy
 
 ### 8. Visualization Suite
-- 📊 **Interactive Plotly** charts (3D surfaces, time series)
-- 📈 **Matplotlib** for publication-quality static plots
-- 🎨 Volatility smile evolution over time
-- 💹 P&L curves with attribution breakdown
-- 📉 Drawdown visualization
-- 🎯 Greeks evolution heatmaps
+- **Interactive Plotly** charts (3D surfaces, time series)
+- **Matplotlib** for publication-quality static plots
+- Volatility smile evolution over time
+- P&L curves with attribution breakdown
+- Drawdown visualization
+- Greeks evolution heatmaps
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -137,7 +137,7 @@ See the Jupyter notebook for a comprehensive walkthrough:
 jupyter notebook notebooks/volatility_surface_demo.ipynb
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Volatility-Surface-Options-Strategy/
@@ -171,7 +171,7 @@ Volatility-Surface-Options-Strategy/
 └── README.md
 ```
 
-## 🔧 Configuration
+## Configuration
 
 Edit `config.yaml` to customize:
 - Data providers and caching
@@ -180,7 +180,7 @@ Edit `config.yaml` to customize:
 - Backtesting parameters
 - Visualization preferences
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run all tests
@@ -190,7 +190,7 @@ pytest tests/
 pytest --cov=src tests/
 ```
 
-## 📚 Key Concepts Demonstrated
+## Key Concepts Demonstrated
 
 1. **Options Pricing Theory**
    - Black-Scholes-Merton model
@@ -217,7 +217,7 @@ pytest --cov=src tests/
    - Statistical arbitrage
    - Performance attribution
 
-## 🎓 Learning Resources
+## Learning Resources
 
 - **Books**:
   - "Option Volatility and Pricing" - Sheldon Natenberg
@@ -228,10 +228,10 @@ pytest --cov=src tests/
   - "The Volatility Smile and Its Implied Tree" - Derman & Kani
   - "Stochastic Volatility Inspired (SVI) Model" - Gatheral
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 This project is for **educational and research purposes only**. It is not intended as financial advice or for use in live trading without thorough testing and risk management. Options trading involves significant risk and is not suitable for all investors.
 
 ---
 
-**⭐ If you find this project useful, please consider giving it a star!**
+**If you find this project useful, please consider giving it a star!**
