@@ -6,9 +6,9 @@ Build and interpolate implied volatility surfaces using various methods.
 
 import numpy as np
 import pandas as pd
-from scipy.interpolate import griddata, RBFInterpolator, interp2d
+from scipy.interpolate import griddata, RBFInterpolator
 from scipy.optimize import minimize
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Union
 import warnings
 
 

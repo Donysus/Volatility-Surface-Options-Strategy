@@ -6,7 +6,7 @@ Comprehensive risk metrics including Sharpe, Sortino, max drawdown, and Greeks P
 
 import numpy as np
 import pandas as pd
-from typing import Optional, Dict
+from typing import Optional, Dict, Tuple
 from scipy import stats
 
 
