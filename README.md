@@ -3,79 +3,52 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A comprehensive toolkit for **volatility modeling**, **options pricing**, and **strategy backtesting**. This project demonstrates advanced quantitative finance concepts including implied volatility surfaces, Greeks calculation, and delta-hedged volatility trading strategies.
 
-## Project Overview
+## Executive Summary
 
-This is a professional-grade resume project showcasing expertise in:
-- **Derivatives Pricing**: Black-Scholes model with vectorized IV solver
-- **Volatility Modeling**: Surface construction using SVI/cubic interpolation
-- **Quantitative Trading**: Volatility arbitrage and gamma scalping strategies
-- **Risk Management**: Comprehensive Greeks calculation and delta hedging
-- **Performance Analytics**: Advanced metrics including Sharpe, Sortino, and P&L attribution
+A full-fledged quantitative finance project demonstrating expertise in options pricing, volatility modeling, and systematic trading strategy development. The toolkit builds, visualizes, and trades on a dynamic implied volatility surface derived from real market data, integrates Greeks-based hedging, and runs full-scale backtests with realistic P&L attribution. It highlights practical applications of derivatives theory in risk management, volatility arbitrage, and market-neutral trading using robust computational finance methods.
 
-## Key Features
 
-### 1. Data Acquisition
-- Real-time option chain data from **yfinance** (SPY, AAPL, etc.)
-- Support for **Polygon.io** for historical data
-- Intelligent caching system for efficient backtesting
-- Historical and realized volatility calculations (Close-to-Close, Parkinson, Garman-Klass)
+## Business Problem
 
-### 2. Implied Volatility Engine
-- **Vectorized Black-Scholes pricing** with numba acceleration
-- **Root-finding IV solver** using scipy (Brent's method, Newton-Raphson)
-- Put-call parity validation
-- Handles edge cases (ATM, ITM, OTM, near expiry)
+Volatility is the key driver of derivatives pricing and portfolio risk. However, traders and quants often face uncertainty due to discrepancies between implied volatility (market expectation) and realized volatility (actual outcome). This project addresses that inefficiency by:
+	1.	Building a volatility surface that models implied vol across strike and maturity.
+	2.	Designing strategies (like delta-hedged volatility arbitrage and gamma scalping) that exploit mispricings between IV and RV.
+	3.	Backtesting these approaches under realistic trading conditions with transaction costs, slippage, and Greeks-based exposure tracking.
 
-### 3. Volatility Surface
-- **Multiple interpolation methods**: Cubic spline, RBF, SVI model
-- **Surface smoothing** to eliminate arbitrage violations
-- **2D Volatility Smiles** by expiry
-- **Term Structure** visualization (ATM vol across maturities)
-- **3D Surface plots** (Strike × Maturity × IV)
+    
+## Methodology
 
-### 4. Greeks Calculator
-- **Analytical Greeks**: Delta, Gamma, Vega, Theta, Rho
-- **Delta-neutral hedging** calculations
-- **P&L attribution** (Theta P&L, Gamma P&L, Vega P&L)
-- Position-level and portfolio-level aggregation
+	•	Data Acquisition: Option chain and spot data fetched via yfinance and optionally Polygon.io. Includes caching and realized volatility estimations using Close-to-Close, Parkinson, and Garman-Klass methods.
+	•	Pricing Engine: Vectorized Black–Scholes model with fast implied volatility solvers (Brent’s, Newton-Raphson), validated with put-call parity.
+	•	Volatility Surface Modeling: Construction using cubic spline, RBF, and SVI interpolation with arbitrage-free smoothing.
+	•	Greeks & Hedging: Full analytical Greeks calculation enabling dynamic delta-neutral hedging and exposure control.
+	•	Trading & Backtesting: Strategy simulation including portfolio-level P&L attribution, transaction costs, and slippage.
+	•	Visualization: Interactive 3D volatility surface plots, smiles, term structures, and P&L attributions via Plotly and Matplotlib.
 
-### 5. Trading Strategies
+    
+## Technical Skills
 
-#### Volatility Arbitrage
-- **Logic**: Long underpriced options (IV < RV), short overpriced (IV > RV)
-- **Entry**: |IV - RV| > threshold (default 3%)
-- **Exit**: Spread converges or position expires
-- **Hedging**: Delta-neutral via dynamic rebalancing
+Python, NumPy, Pandas, SciPy, Numba, Plotly, Matplotlib, QuantLib (optional), Options Theory, Risk Management, Statistical Analysis, Data Visualization, Portfolio Simulation, Backtesting Systems Design
 
-#### Gamma Scalping
-- **Logic**: Long gamma, profit from realized volatility
-- **Mechanism**: Buy ATM straddles, hedge delta dynamically
-- **P&L Source**: Gamma gains from spot moves > theta decay
-- **Rebalancing**: Triggered by delta threshold
 
-### 6. Backtesting Engine
-- Full **portfolio simulation** with position tracking
-- **Transaction costs** and **slippage** modeling
-- **Mark-to-market** P&L with Greeks evolution
-- **Trade logging** and audit trail
+## Results & Business Insights
 
-### 7. Performance Metrics
-- **Risk-Adjusted Returns**: Sharpe, Sortino, Calmar ratios
-- **Drawdown Analysis**: Maximum drawdown, recovery periods
-- **Distribution Metrics**: VaR, CVaR, Omega ratio, tail ratio
-- **Greeks P&L Attribution**: Theta vs Gamma vs Vega contributions
-- **Volatility Analysis**: IV-RV correlation and forecast accuracy
+	Built an end-to-end volatility surface engine supporting real-time data and robust interpolation.
+	•	Simulated delta-hedged volatility arbitrage and gamma scalping strategies with full Greeks attribution.
+	•	Delivered realistic P&L decomposition showing how volatility mispricing can generate excess returns under controlled risk exposure.
+	•	Quantified volatility risk premium by analyzing IV–RV divergence over time.
+	•	Produced interactive risk dashboards for performance, drawdown, and exposure visualization.
 
-### 8. Visualization Suite
-- **Interactive Plotly** charts (3D surfaces, time series)
-- **Matplotlib** for publication-quality static plots
-- Volatility smile evolution over time
-- P&L curves with attribution breakdown
-- Drawdown visualization
-- Greeks evolution heatmaps
 
+## Next Steps
+
+	•	Integrate machine learning-based IV surface forecasting (e.g., LSTM or Random Forest regressors).
+	•	Extend to multi-asset volatility modeling and cross-sectional arbitrage.
+	•	Connect with paper-trading APIs (e.g., Alpaca, IBKR) for real-world execution testing.
+	•	Incorporate stochastic volatility models (Heston, SABR) for enhanced realism.
+
+    
 ## Quick Start
 
 ### Installation
