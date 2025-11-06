@@ -12,11 +12,11 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 print("=" * 70)
-print("🧪 Testing Core Components")
+print("Testing Core Components")
 print("=" * 70)
 
 # Test 1: Black-Scholes Pricing
-print("\n1️⃣ Testing Black-Scholes Pricing...")
+print("\n Testing Black-Scholes Pricing...")
 from src.pricing import black_scholes_call, black_scholes_put
 
 call_price = black_scholes_call(S=100, K=100, T=1.0, r=0.05, sigma=0.2)
@@ -29,12 +29,12 @@ assert 3 < put_price < 12, "Put price out of expected range"
 parity_diff = abs((call_price - put_price) - (100 - 100 * np.exp(-0.05)))
 assert parity_diff < 0.01, "Put-call parity violated"
 
-print(f"   ✅ Call price: ${call_price:.2f}")
-print(f"   ✅ Put price: ${put_price:.2f}")
-print(f"   ✅ Put-call parity: OK (diff: {parity_diff:.6f})")
+print(f"    Call price: ${call_price:.2f}")
+print(f"    Put price: ${put_price:.2f}")
+print(f"    Put-call parity: OK (diff: {parity_diff:.6f})")
 
 # Test 2: Implied Volatility Solver
-print("\n2️⃣ Testing Implied Volatility Solver...")
+print("\n Testing Implied Volatility Solver...")
 from src.pricing import ImpliedVolatilitySolver
 
 solver = ImpliedVolatilitySolver()
@@ -45,12 +45,12 @@ implied_vol = solver.solve(test_price, S=100, K=100, T=0.5, r=0.05, option_type=
 vol_error = abs(implied_vol - true_vol)
 assert vol_error < 0.001, "IV solver error too large"
 
-print(f"   ✅ True vol: {true_vol:.4f}")
-print(f"   ✅ Implied vol: {implied_vol:.4f}")
-print(f"   ✅ Error: {vol_error:.6f}")
+print(f"    True vol: {true_vol:.4f}")
+print(f"    Implied vol: {implied_vol:.4f}")
+print(f"    Error: {vol_error:.6f}")
 
 # Test 3: Greeks Calculator
-print("\n3️⃣ Testing Greeks Calculator...")
+print("\n Testing Greeks Calculator...")
 from src.greeks import GreeksCalculator
 
 calc = GreeksCalculator()
@@ -61,13 +61,13 @@ assert greeks['gamma'] > 0, "Gamma should be positive"
 assert greeks['vega'] > 0, "Vega should be positive"
 assert greeks['theta'] < 0, "Theta should be negative for long call"
 
-print(f"   ✅ Delta: {greeks['delta']:.4f}")
-print(f"   ✅ Gamma: {greeks['gamma']:.6f}")
-print(f"   ✅ Vega: {greeks['vega']:.4f}")
-print(f"   ✅ Theta: {greeks['theta']:.4f}")
+print(f"   Delta: {greeks['delta']:.4f}")
+print(f"   Gamma: {greeks['gamma']:.6f}")
+print(f"   Vega: {greeks['vega']:.4f}")
+print(f"   Theta: {greeks['theta']:.4f}")
 
 # Test 4: Volatility Surface
-print("\n4️⃣ Testing Volatility Surface...")
+print("\n Testing Volatility Surface...")
 from src.surface import VolatilitySurface
 
 # Create synthetic data
@@ -90,11 +90,11 @@ surface.fit(np.array(strikes), np.array(maturities), np.array(ivs), spot=spot)
 interp_vol = surface.interpolate(strike=100, maturity=0.5)
 assert 0.15 < interp_vol < 0.25, "Interpolated vol out of range"
 
-print(f"   ✅ Surface fitted with {len(strikes)} points")
-print(f"   ✅ ATM vol at 6M: {interp_vol:.2%}")
+print(f"   Surface fitted with {len(strikes)} points")
+print(f"   ATM vol at 6M: {interp_vol:.2%}")
 
 # Test 5: Performance Metrics
-print("\n5️⃣ Testing Performance Metrics...")
+print("\n Testing Performance Metrics...")
 from src.backtest import PerformanceMetrics
 
 # Generate synthetic returns
@@ -110,22 +110,22 @@ max_dd, _, _ = pm.max_drawdown(equity)
 assert -5 < sharpe < 5, "Sharpe ratio out of range"
 assert abs(max_dd) < 1, "Max drawdown should be less than 100%"
 
-print(f"   ✅ Sharpe ratio: {sharpe:.2f}")
-print(f"   ✅ Sortino ratio: {sortino:.2f}")
-print(f"   ✅ Max drawdown: {max_dd:.2%}")
+print(f"   Sharpe ratio: {sharpe:.2f}")
+print(f"   Sortino ratio: {sortino:.2f}")
+print(f"   Max drawdown: {max_dd:.2%}")
 
 # Test 6: Data Fetcher (basic initialization)
-print("\n6️⃣ Testing Data Fetcher...")
+print("\n Testing Data Fetcher...")
 from src.data import OptionDataFetcher
 
 fetcher = OptionDataFetcher(cache_enabled=False)
 assert fetcher.provider == 'yfinance', "Provider not set correctly"
 
-print(f"   ✅ Data fetcher initialized")
-print(f"   ✅ Provider: {fetcher.provider}")
+print(f"   Data fetcher initialized")
+print(f"   Provider: {fetcher.provider}")
 
 # Test 7: Strategies
-print("\n7️⃣ Testing Trading Strategies...")
+print("\n Testing Trading Strategies...")
 from src.strategies import VolatilityArbitrageStrategy, GammaScalpingStrategy
 
 vol_arb = VolatilityArbitrageStrategy()
@@ -136,11 +136,11 @@ assert signal['action'] in ['buy_vol', 'sell_vol', 'hold', 'close'], "Invalid si
 gamma_scalp = GammaScalpingStrategy()
 need_hedge, shares = gamma_scalp.check_rehedge(current_delta=500, spot=100, position_size=10000)
 
-print(f"   ✅ Volatility arbitrage: {signal['action']}")
-print(f"   ✅ Gamma scalping: hedge check works")
+print(f"   Volatility arbitrage: {signal['action']}")
+print(f"   Gamma scalping: hedge check works")
 
 # Test 8: Backtester
-print("\n8️⃣ Testing Backtesting Engine...")
+print("\nTesting Backtesting Engine...")
 from src.backtest import OptionsBacktester
 
 bt = OptionsBacktester(initial_capital=100000)
@@ -161,14 +161,14 @@ assert len(bt.positions) == 1, "Position not tracked"
 state = bt.get_portfolio_state(datetime.now(), spot_price=100)
 assert state.total_value < bt.initial_capital, "Position cost not deducted"
 
-print(f"   ✅ Position opened successfully")
-print(f"   ✅ Portfolio value: ${state.total_value:,.2f}")
+print(f"   Position opened successfully")
+print(f"   Portfolio value: ${state.total_value:,.2f}")
 
 print("\n" + "=" * 70)
-print("✅ ALL TESTS PASSED!")
+print("ALL TESTS PASSED!")
 print("=" * 70)
 
-print("\n🎉 Summary:")
+print("\n Summary:")
 print("   • Black-Scholes pricing: ✅")
 print("   • Implied volatility solver: ✅")
 print("   • Greeks calculator: ✅")
@@ -178,4 +178,4 @@ print("   • Data fetcher: ✅")
 print("   • Trading strategies: ✅")
 print("   • Backtesting engine: ✅")
 
-print("\n✨ System is fully operational and ready for production use!")
+print("\n System is fully operational and ready for production use!")
