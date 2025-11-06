@@ -203,8 +203,6 @@ pytest --cov=src tests/
 
 ## Disclaimer
 
-This project is for **educational and research purposes only**. It is not intended as financial advice or for use in live trading without thorough testing and risk management. Options trading involves significant risk and is not suitable for all investors.
-
----
+This project is for **educational and research purposes only**.
 
 **If you find this project useful, please consider giving it a star!**
