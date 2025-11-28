@@ -27,6 +27,7 @@ flake8>=6.0.0
 python-dotenv>=1.0.0
 tqdm>=4.65.0
 pytz>=2023.3
+pyyaml>=6.0.0
 
 # Optional: For Indian markets (NSE)
 # nsepy>=0.8
