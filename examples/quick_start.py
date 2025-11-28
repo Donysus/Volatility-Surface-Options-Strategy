@@ -5,7 +5,9 @@ Run this script to see a complete workflow demonstration.
 """
 
 import sys
-sys.path.append('.')
+import os
+# Add parent directory to path so we can import src modules
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from datetime import datetime
 import numpy as np
