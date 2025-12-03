@@ -78,15 +78,15 @@ from src.pricing import calculate_implied_volatility_vectorized
 from src.surface import VolatilitySurface
 from src.visualization import VolatilityVisualizer
 
-# 1. Fetch option data
+#Fetch Data NOTE: If you need Indian Data, in requirements.txt comment out the last library, it enables the NSE stock exchange to be used
 fetcher = OptionDataFetcher()
 spy_chain = fetcher.get_option_chain("SPY")
 spot = fetcher.get_spot_price("SPY")
 
-# 2. Calculate implied volatilities
+#IV Calcs:
 spy_chain['iv'] = calculate_implied_volatility_vectorized(spy_chain)
 
-# 3. Build volatility surface
+
 surface = VolatilitySurface(method='cubic')
 surface.fit(
     strikes=spy_chain['strike'].values,
@@ -95,7 +95,7 @@ surface.fit(
     spot=spot
 )
 
-# 4. Visualize
+#Graphs
 viz = VolatilityVisualizer(style='plotly')
 K_grid, T_grid, IV_grid = surface.get_surface_grid()
 fig = viz.plot_volatility_surface_3d(K_grid, T_grid, IV_grid, spot)
