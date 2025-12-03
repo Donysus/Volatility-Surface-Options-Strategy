@@ -25,7 +25,7 @@ def main():
     print("=" * 70)
     
     # Step 1: Fetch data
-    print("\n📊 Step 1: Fetching SPY option chain...")
+    print("\n Step 1: Fetching SPY option chain...")
     fetcher = OptionDataFetcher()
     spy_chain = fetcher.get_option_chain("SPY")
     spot = fetcher.get_spot_price("SPY")
@@ -36,7 +36,7 @@ def main():
     print(f"    Risk-free rate: {rf_rate:.2%}")
     
     # Step 2: Clean data
-    print("\n🧹 Step 2: Cleaning data...")
+    print("\n Step 2: Cleaning data...")
     spy_clean = fetcher.clean_option_chain(
         spy_chain, 
         min_volume=10, 
@@ -45,13 +45,13 @@ def main():
     print(f"   {len(spy_clean):,} contracts after cleaning")
     
     # Step 3: Calculate time to maturity
-    print("\n⏱️  Step 3: Calculating time to maturity...")
+    print("\n  Step 3: Calculating time to maturity...")
     current_date = pd.Timestamp.now()
     spy_clean['T'] = (spy_clean['expiry'] - current_date).dt.total_seconds() / (365.25 * 24 * 3600)
     spy_clean = spy_clean[spy_clean['T'] > 0]
     
     # Step 4: Calculate implied volatility
-    print("\n🎯 Step 4: Calculating implied volatility...")
+    print("\n Step 4: Calculating implied volatility...")
     spy_clean['spot'] = spot
     spy_clean['r'] = rf_rate
     spy_clean['iv_calculated'] = calculate_implied_volatility_vectorized(
@@ -66,7 +66,7 @@ def main():
     print(f"   Calculated IV for {valid_iv.sum():,} contracts")
     
     # Step 5: Build volatility surface
-    print("\n🗺️  Step 5: Building volatility surface...")
+    print("\n  Step 5: Building volatility surface...")
     surface = VolatilitySurface(method='cubic')
     spy_surface = spy_clean[valid_iv].copy()
     
@@ -79,13 +79,13 @@ def main():
     print("    Surface fitted successfully")
     
     # Step 6: Calculate Greeks
-    print("\n📐 Step 6: Calculating Greeks...")
+    print("\n Step 6: Calculating Greeks...")
     spy_surface['sigma'] = spy_surface['iv_final']
     spy_greeks = calculate_greeks_dataframe(spy_surface)
     print("   Greeks calculated")
     
     # Step 7: Analyze specific expiry
-    print("\n📊 Step 7: Analyzing nearest expiry...")
+    print("\n Step 7: Analyzing nearest expiry...")
     nearest_expiry = spy_surface['expiry'].min()
     near_exp_data = spy_greeks[spy_greeks['expiry'] == nearest_expiry].copy()
     
@@ -102,7 +102,7 @@ def main():
             print(f"   ATM Call IV: {atm_strike['iv_final']:.2%}")
     
     # Step 8: Visualization
-    print("\n📈 Step 8: Creating visualizations...")
+    print("\n Step 8: Creating visualizations...")
     viz = VolatilityVisualizer(style='plotly')
     
     # Get smile
@@ -121,7 +121,7 @@ def main():
     
     # Step 9: Summary statistics
     print("\n" + "=" * 70)
-    print("📊 SUMMARY STATISTICS")
+    print(" SUMMARY STATISTICS")
     print("=" * 70)
     
     print(f"\nVolatility Statistics:")
