@@ -21,7 +21,7 @@ from src.visualization import VolatilityVisualizer
 
 def main():
     print("=" * 70)
-    print("🧠 Dynamic Volatility Surface & Options Strategy Simulator")
+    print(" Dynamic Volatility Surface & Options Strategy Simulator")
     print("=" * 70)
     
     # Step 1: Fetch data
@@ -31,9 +31,9 @@ def main():
     spot = fetcher.get_spot_price("SPY")
     rf_rate = fetcher.get_risk_free_rate()
     
-    print(f"   ✅ Fetched {len(spy_chain):,} contracts")
-    print(f"   💰 Spot: ${spot:.2f}")
-    print(f"   📈 Risk-free rate: {rf_rate:.2%}")
+    print(f"    Fetched {len(spy_chain):,} contracts")
+    print(f"    Spot: ${spot:.2f}")
+    print(f"    Risk-free rate: {rf_rate:.2%}")
     
     # Step 2: Clean data
     print("\n🧹 Step 2: Cleaning data...")
@@ -42,7 +42,7 @@ def main():
         min_volume=10, 
         min_oi=50
     )
-    print(f"   ✅ {len(spy_clean):,} contracts after cleaning")
+    print(f"   {len(spy_clean):,} contracts after cleaning")
     
     # Step 3: Calculate time to maturity
     print("\n⏱️  Step 3: Calculating time to maturity...")
@@ -63,7 +63,7 @@ def main():
     # Use calculated IV or market IV
     spy_clean['iv_final'] = spy_clean['iv_calculated'].fillna(spy_clean['iv'])
     valid_iv = spy_clean['iv_final'].notna()
-    print(f"   ✅ Calculated IV for {valid_iv.sum():,} contracts")
+    print(f"   Calculated IV for {valid_iv.sum():,} contracts")
     
     # Step 5: Build volatility surface
     print("\n🗺️  Step 5: Building volatility surface...")
@@ -76,13 +76,13 @@ def main():
         implied_vols=spy_surface['iv_final'].values,
         spot=spot
     )
-    print("   ✅ Surface fitted successfully")
+    print("    Surface fitted successfully")
     
     # Step 6: Calculate Greeks
     print("\n📐 Step 6: Calculating Greeks...")
     spy_surface['sigma'] = spy_surface['iv_final']
     spy_greeks = calculate_greeks_dataframe(spy_surface)
-    print("   ✅ Greeks calculated")
+    print("   Greeks calculated")
     
     # Step 7: Analyze specific expiry
     print("\n📊 Step 7: Analyzing nearest expiry...")
@@ -109,15 +109,15 @@ def main():
     T_nearest = spy_surface[spy_surface['expiry'] == nearest_expiry]['T'].iloc[0]
     K_smile, iv_smile = surface.get_smile(T_nearest)
     
-    print("   ✅ Volatility smile extracted")
+    print("    Volatility smile extracted")
     
     # Get term structure  
     T_term, iv_term = surface.get_term_structure(strike=spot)
-    print("   ✅ Term structure extracted")
+    print("    Term structure extracted")
     
     # Get 3D surface
     K_grid, T_grid, IV_grid = surface.get_surface_grid()
-    print("   ✅ 3D surface grid created")
+    print("    3D surface grid created")
     
     # Step 9: Summary statistics
     print("\n" + "=" * 70)
@@ -146,10 +146,10 @@ def main():
         print(f"      Avg Vega: {puts['vega'].mean():.4f}")
     
     print("\n" + "=" * 70)
-    print("✅ Analysis complete!")
+    print(" Analysis complete!")
     print("=" * 70)
     
-    print("\n💡 Next steps:")
+    print("\n Next steps:")
     print("   1. Open the Jupyter notebook: notebooks/volatility_surface_demo.ipynb")
     print("   2. Explore interactive visualizations")
     print("   3. Backtest trading strategies")
